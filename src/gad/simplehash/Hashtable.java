@@ -14,7 +14,6 @@ public class Hashtable<K, V> {
     public Hashtable(int minSize, int[] a) {
         table = (List<Pair<K, V>>[]) new List[getNextPowerOfTwo(minSize)];
         this.a = a;
-        this.a = new int[getNextPowerOfTwo(minSize)];
     }
 
     public List<Pair<K, V>>[] getTable() {
@@ -93,6 +92,7 @@ public class Hashtable<K, V> {
         return stream().map(Pair::two);
     }
 
+    /*
     public static void main(String[] args) {
         System.out.println(getNextPowerOfTwo(-10));
         System.out.println(getNextPowerOfTwo(0));
@@ -104,4 +104,6 @@ public class Hashtable<K, V> {
         System.out.println(fastModulo(63,64));
         System.out.println(fastModulo(73,16));
     }
+
+     */
 }
