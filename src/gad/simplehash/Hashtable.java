@@ -31,29 +31,11 @@ public class Hashtable<K, V> {
     }
 
     public static int fastModulo(int i, int divisor) {
-        divisor--;
-        return i & divisor;
-        /*
-        if (i < divisor) {
-            if (i < 0)
-                return 0;
-            return i;
-        } else if (i > divisor) {
-            return i - ((i / divisor) * divisor);
-            String binaryI = Integer.toBinaryString(i);
-            if (binaryI.charAt(binaryI.length()-1) == 0) {
-                //Case even
-                int mod = i - ((i / divisor) * divisor);
-                return mod;
-            } else {
-                //Case odd
-                int mod = i - ((i / divisor) * divisor);
-                return mod;
-            }
-        }
-        else
+        //divisor--;
+        //return i & divisor;
+        if (i < 0)
             return 0;
-         */
+        return i - ((i / divisor) * divisor);
     }
 
     private byte[] bytes(K k) {
@@ -92,18 +74,16 @@ public class Hashtable<K, V> {
         return stream().map(Pair::two);
     }
 
-    /*
+
     public static void main(String[] args) {
         System.out.println(getNextPowerOfTwo(-10));
         System.out.println(getNextPowerOfTwo(0));
         System.out.println(getNextPowerOfTwo(65));
-        System.out.println(fastModulo(2,2));
-        System.out.println(fastModulo(11,2));
-        System.out.println(fastModulo(11,8));
-        System.out.println(fastModulo(65,64));
-        System.out.println(fastModulo(63,64));
-        System.out.println(fastModulo(73,16));
+        System.out.println(fastModulo(2, 2));
+        System.out.println(fastModulo(11, 2));
+        System.out.println(fastModulo(11, 8));
+        System.out.println(fastModulo(65, 64));
+        System.out.println(fastModulo(63, 64));
+        System.out.println(fastModulo(73, 16));
     }
-
-     */
 }
