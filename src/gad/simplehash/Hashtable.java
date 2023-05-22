@@ -14,6 +14,7 @@ public class Hashtable<K, V> {
     public Hashtable(int minSize, int[] a) {
         table = (List<Pair<K, V>>[]) new List[getNextPowerOfTwo(minSize)];
         this.a = a;
+        this.a = new int[getNextPowerOfTwo(minSize)];
     }
 
     public List<Pair<K, V>>[] getTable() {
@@ -21,6 +22,8 @@ public class Hashtable<K, V> {
     }
 
     public static int getNextPowerOfTwo(int i) {
+        if (i == 0)
+            return 0;
         int p = 2;
         while (i > p) {
             p *= 2;
@@ -29,13 +32,15 @@ public class Hashtable<K, V> {
     }
 
     public static int fastModulo(int i, int divisor) {
+        divisor--;
+        return i & divisor;
+        /*
         if (i < divisor) {
             if (i < 0)
                 return 0;
             return i;
         } else if (i > divisor) {
             return i - ((i / divisor) * divisor);
-            /*
             String binaryI = Integer.toBinaryString(i);
             if (binaryI.charAt(binaryI.length()-1) == 0) {
                 //Case even
@@ -46,10 +51,10 @@ public class Hashtable<K, V> {
                 int mod = i - ((i / divisor) * divisor);
                 return mod;
             }
-             */
         }
         else
             return 0;
+         */
     }
 
     private byte[] bytes(K k) {
@@ -89,6 +94,8 @@ public class Hashtable<K, V> {
     }
 
     public static void main(String[] args) {
+        System.out.println(getNextPowerOfTwo(-10));
+        System.out.println(getNextPowerOfTwo(0));
         System.out.println(getNextPowerOfTwo(65));
         System.out.println(fastModulo(2,2));
         System.out.println(fastModulo(11,2));
