@@ -8,11 +8,12 @@ import java.util.stream.Stream;
 
 public class Hashtable<K, V> {
     private List<Pair<K, V>>[] table;
+    private int [] a;
 
     @SuppressWarnings("unchecked")
     public Hashtable(int minSize, int[] a) {
-        // TODO: Change and complete
-        table = (List<Pair<K, V>>[]) new List[0];
+        table = (List<Pair<K, V>>[]) new List[getNextPowerOfTwo(minSize)];
+        this.a = a;
     }
 
     public List<Pair<K, V>>[] getTable() {
@@ -20,11 +21,35 @@ public class Hashtable<K, V> {
     }
 
     public static int getNextPowerOfTwo(int i) {
-        return 0;
+        int p = 2;
+        while (i > p) {
+            p *= 2;
+        }
+        return p;
     }
 
     public static int fastModulo(int i, int divisor) {
-        return 0;
+        if (i < divisor) {
+            if (i < 0)
+                return 0;
+            return i;
+        } else if (i > divisor) {
+            return i - ((i / divisor) * divisor);
+            /*
+            String binaryI = Integer.toBinaryString(i);
+            if (binaryI.charAt(binaryI.length()-1) == 0) {
+                //Case even
+                int mod = i - ((i / divisor) * divisor);
+                return mod;
+            } else {
+                //Case odd
+                int mod = i - ((i / divisor) * divisor);
+                return mod;
+            }
+             */
+        }
+        else
+            return 0;
     }
 
     private byte[] bytes(K k) {
@@ -61,5 +86,15 @@ public class Hashtable<K, V> {
 
     public Stream<V> values() {
         return stream().map(Pair::two);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getNextPowerOfTwo(65));
+        System.out.println(fastModulo(2,2));
+        System.out.println(fastModulo(11,2));
+        System.out.println(fastModulo(11,8));
+        System.out.println(fastModulo(65,64));
+        System.out.println(fastModulo(63,64));
+        System.out.println(fastModulo(73,16));
     }
 }
