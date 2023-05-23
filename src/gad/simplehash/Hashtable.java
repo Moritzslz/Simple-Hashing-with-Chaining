@@ -43,14 +43,9 @@ public class Hashtable<K, V> {
 
     public int h(K k, ModuloHelper mH) {
         byte[] x = bytes(k);
-        int u = 0;
         int sum = 0;
         for (int i = 0; i < x.length; i++) {
-            if (u >= a.length) {
-                u = 0;
-            }
-            sum += x[i] * a[u];
-            u++;
+            sum += x[i] * a[i % a.length];
         }
         return mH.doTheMagic(sum,2);
     }
