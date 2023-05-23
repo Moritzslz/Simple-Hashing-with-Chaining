@@ -13,9 +13,10 @@ public class Hashtable<K, V> {
 
     @SuppressWarnings("unchecked")
     public Hashtable(int minSize, int[] a) {
-        table = new List[getNextPowerOfTwo(minSize)];
+        int size = getNextPowerOfTwo(minSize);
+        table = new List[size];
         for (List<Pair<K, V>> pair : table) {
-            pair = new ArrayList<>();
+            pair = new ArrayList<>(size);
         }
         this.a = a;
     }
