@@ -12,7 +12,7 @@ public class Hashtable<K, V> {
 
     @SuppressWarnings("unchecked")
     public Hashtable(int minSize, int[] a) {
-        table = (List<Pair<K, V>>[]) new List[getNextPowerOfTwo(minSize)];
+        table = new List[getNextPowerOfTwo(minSize)];
         this.a = a;
     }
 
