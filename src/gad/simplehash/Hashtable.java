@@ -59,7 +59,12 @@ public class Hashtable<K, V> {
         if (table[hash].isEmpty()) {
             return false;
         } else {
-            table[h(k, mH)].clear();
+            for (Pair<K, V> p : table[hash]) {
+                if (p.one() == null || p.two() == null)
+                    table[hash].clear();
+                    return false;
+            }
+            table[hash].clear();
             return true;
         }
     }
