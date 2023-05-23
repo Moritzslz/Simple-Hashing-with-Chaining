@@ -1,10 +1,8 @@
 package gad.simplehash;
 
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.sql.Array;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class Hashtable<K, V> {
@@ -13,10 +11,9 @@ public class Hashtable<K, V> {
 
     @SuppressWarnings("unchecked")
     public Hashtable(int minSize, int[] a) {
-        int size = getNextPowerOfTwo(minSize);
-        table = new List[size];
-        for (List<Pair<K, V>> pair : table) {
-            pair = new ArrayList<>(size);
+        table = new List[getNextPowerOfTwo(minSize)];
+        for (int i = 0; i < table.length; i++) {
+            table[i] = new ArrayList<>();
         }
         this.a = a;
     }
