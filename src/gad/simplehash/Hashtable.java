@@ -23,7 +23,7 @@ public class Hashtable<K, V> {
     }
 
     public static int getNextPowerOfTwo(int i) {
-        if (i == 0)
+        if (i <= 0)
             return 0;
         int p = 2;
         while (i > p) {
