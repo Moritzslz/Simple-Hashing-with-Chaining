@@ -1,6 +1,7 @@
 package gad.simplehash;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -13,6 +14,9 @@ public class Hashtable<K, V> {
     @SuppressWarnings("unchecked")
     public Hashtable(int minSize, int[] a) {
         table = new List[getNextPowerOfTwo(minSize)];
+        for (List<Pair<K, V>> pair : table) {
+            pair = new ArrayList<>();
+        }
         this.a = a;
     }
 
