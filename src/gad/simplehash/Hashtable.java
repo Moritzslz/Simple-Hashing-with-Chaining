@@ -23,7 +23,7 @@ public class Hashtable<K, V> {
     }
 
     public static int getNextPowerOfTwo(int i) {
-        if (i <= 0)
+        if (i <= 1)
             return 1;
         int p = 2;
         while (i > p) {
@@ -75,7 +75,7 @@ public class Hashtable<K, V> {
 
 
     public static void main(String[] args) {
-        System.out.println(getNextPowerOfTwo(64));
+        System.out.println(getNextPowerOfTwo(3));
         System.out.println(getNextPowerOfTwo(-10));
         System.out.println(getNextPowerOfTwo(0));
         System.out.println(getNextPowerOfTwo(65));
