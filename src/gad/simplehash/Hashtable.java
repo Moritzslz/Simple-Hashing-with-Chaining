@@ -42,8 +42,18 @@ public class Hashtable<K, V> {
     }
 
     public int h(K k, ModuloHelper mH) {
+        int[] a = {1, 4, 5, 8};
         byte[] x = bytes(k);
-        return 0;
+        int u = 0;
+        int sum = 0;
+        for (int i = 0; i < x.length; i++) {
+            if (u >= a.length) {
+                u = 0;
+            }
+            sum += x[i] * a[u];
+            u++;
+        }
+        return mH.doTheMagic(sum,2);
     }
 
     public void insert(K k, V v, ModuloHelper mH) {
