@@ -51,10 +51,17 @@ public class Hashtable<K, V> {
     }
 
     public void insert(K k, V v, ModuloHelper mH) {
+        table[h(k,mH)].add(new Pair<>(k, v));
     }
 
     public boolean remove(K k, ModuloHelper mH) {
-        return false;
+        int hash = h(k, mH);
+        if (table[hash].isEmpty()) {
+            return false;
+        } else {
+            table[h(k, mH)].clear();
+            return true;
+        }
     }
 
     public Optional<V> find(K k, ModuloHelper mH) {
