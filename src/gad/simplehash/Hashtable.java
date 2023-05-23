@@ -47,7 +47,7 @@ public class Hashtable<K, V> {
         for (int i = 0; i < x.length; i++) {
             sum += x[i] * a[i % a.length];
         }
-        return mH.doTheMagic(sum,2);
+        return mH.doTheMagic(sum, table.length);
     }
 
     public void insert(K k, V v, ModuloHelper mH) {
