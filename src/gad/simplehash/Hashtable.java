@@ -42,7 +42,6 @@ public class Hashtable<K, V> {
     }
 
     public int h(K k, ModuloHelper mH) {
-        int[] a = {1, 4, 5, 8};
         byte[] x = bytes(k);
         int u = 0;
         int sum = 0;
