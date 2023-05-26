@@ -51,7 +51,8 @@ public class Hashtable<K, V> {
     }
 
     public void insert(K k, V v, ModuloHelper mH) {
-        table[h(k,mH)].add(new Pair<>(k, v));
+        int hash = h(k, mH);
+        table[hash].add(new Pair<>(k, v));
     }
 
     public boolean remove(K k, ModuloHelper mH) {
@@ -59,15 +60,22 @@ public class Hashtable<K, V> {
         if (table[hash].isEmpty()) {
             return false;
         } else {
-            table[hash].clear();
+            List<Pair<K, V>> entries = table[hash];
+            for (int i = 0; i < entries.size(); i++) {
+                if (entries.get(i).one() == k)
+                    entries.remove(i);
+            }
             return true;
         }
     }
 
     public Optional<V> find(K k, ModuloHelper mH) {
-        for (int i = 0; i < table.length; i++) {
-            if(!table[i].isEmpty() && table[i].get(0).one() == k) {
-                return (Optional<V>) table[i].get(table[i].size() - 1).two();
+        int hash = h(k, mH);
+        if (!table[hash].isEmpty()) {
+            List<Pair<K, V>> entries = table[hash];
+            for (Pair<K, V> entry : entries) {
+                if (entry.one() == k)
+                    return Optional.ofNullable(entry.two());
             }
         }
         return Optional.empty();
@@ -75,14 +83,15 @@ public class Hashtable<K, V> {
 
     public List<V> findAll(K k, ModuloHelper mH) {
         List<V> values = new ArrayList<>();
-        for (int i = 0; i < table.length; i++) {
-            if(!table[i].isEmpty() && table[i].get(0).one() == k) {
-                for (int u = 0; u < table[i].size(); u++) {
-                    values.add(table[i].get(u).two());
-                }
+        int hash = h(k, mH);
+        if (!table[hash].isEmpty()) {
+            List<Pair<K, V>> entries = table[hash];
+            for (Pair<K, V> entry : entries) {
+                if (entry.one() == k)
+                    values.add(entry.two());
             }
         }
-        return null;
+        return values;
     }
 
     public Stream<Pair<K, V>> stream() {
