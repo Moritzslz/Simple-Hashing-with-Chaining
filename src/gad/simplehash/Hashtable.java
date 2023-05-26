@@ -65,10 +65,23 @@ public class Hashtable<K, V> {
     }
 
     public Optional<V> find(K k, ModuloHelper mH) {
+        for (int i = 0; i < table.length; i++) {
+            if(!table[i].isEmpty() && table[i].get(0).one() == k) {
+                return (Optional<V>) table[i].get(table[i].size() - 1).two();
+            }
+        }
         return Optional.empty();
     }
 
     public List<V> findAll(K k, ModuloHelper mH) {
+        List<V> values = new ArrayList<>();
+        for (int i = 0; i < table.length; i++) {
+            if(!table[i].isEmpty() && table[i].get(0).one() == k) {
+                for (int u = 0; u < table[i].size(); u++) {
+                    values.add(table[i].get(u).two());
+                }
+            }
+        }
         return null;
     }
 
