@@ -63,7 +63,7 @@ public class Hashtable<K, V> {
             List<Pair<K, V>> entries = table[hash];
             for (int i = 0; i < entries.size(); i++) {
                 if (entries.get(i).one() == k)
-                    entries.remove(i);
+                    table[hash].remove(i);
             }
             return true;
         }
