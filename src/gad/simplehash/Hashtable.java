@@ -60,9 +60,8 @@ public class Hashtable<K, V> {
         if (table[hash].isEmpty()) {
             return false;
         } else {
-            List<Pair<K, V>> entries = table[hash];
-            for (int i = 0; i < entries.size(); i++) {
-                if (entries.get(i).one() == k)
+            for (int i = 0; i < table[hash].size(); i++) {
+                if (table[hash].get(i).one().equals(k))
                     table[hash].remove(i);
             }
             return true;
