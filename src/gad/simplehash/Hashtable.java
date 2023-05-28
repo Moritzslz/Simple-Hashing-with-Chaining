@@ -60,8 +60,9 @@ public class Hashtable<K, V> {
             return false;
         } else {
             for (int i = 0; i < table[hash].size(); i++) {
-                if (table[hash].get(i).one().equals(k))
+                if (table[hash].get(i).one().equals(k)) {
                     table[hash].remove(i);
+                }
             }
             return true;
         }
