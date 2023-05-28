@@ -56,14 +56,16 @@ public class Hashtable<K, V> {
 
     public boolean remove(K k, ModuloHelper mH) {
         int hash = h(k, mH);
+        List<Pair<K, V>> toBeRemoved = new ArrayList<>();
         if (table[hash].isEmpty()) {
             return false;
         } else {
             for (int i = 0; i < table[hash].size(); i++) {
                 if (table[hash].get(i).one().equals(k)) {
-                    table[hash].remove(i);
+                    toBeRemoved.add(table[hash].get(i));
                 }
             }
+            table[hash].removeAll(toBeRemoved);
             return true;
         }
     }
